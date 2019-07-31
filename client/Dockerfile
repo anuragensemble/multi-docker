@@ -1,9 +1,9 @@
 FROM node:alpine as builder
 WORKDIR "/app"
 COPY ./package.json ./
-RUN npm install --no-bin-links
+RUN npm install
 COPY . .
-RUN npm run build
+RUN GENERATE_SOURCEMAP=false npm run build
 
 FROM nginx
 EXPOSE 3000
